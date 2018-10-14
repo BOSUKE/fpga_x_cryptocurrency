@@ -10,10 +10,6 @@ https://d-rissoku.net/サークルサポート/fpga_x_仮想通貨/
 PDF版をBOOTHにて販売中です。  
 https://d-rissoku.booth.pm/items/1039985
 
-## bitcoin_fpga を PYNQ-Z1 で動作させるまでの手順
-下記URLを参照願います。  
-https://d-rissoku.net/サークルサポート/fpga_x_仮想通貨/
-
 ## 各ディレクトリの内容
 ### 3.1_sha256/
 同人誌の3.1節で扱っているSHA-256のHash処理の非パイプライン版の実装（sha256モジュール）とテストベンチ、並びに期待値生成プログラムです。
@@ -32,3 +28,17 @@ https://d-rissoku.net/サークルサポート/fpga_x_仮想通貨/
 
 ### test_bitcoin_fpga/
 同人誌の4.2.3節と4.2.4節で扱っているbitcoin\_minerテスト用の期待値入手スクリプトとbitcoin\_minerのテストベンチです。
+
+### jupyter_notebooks/
+bitcoin_minerをPYNQ-Z1のJupyter Notebookから利用するときに利用する miner.py と、miner.pyを利用してbitcoin_minerのテストをしたときのNotebook（test_bitcoin_miner.ipynb）です。
+
+miner.binは bitcoin_fpga/ のプロジェクトで生成したBitstreamをリネームしたものです。
+miner.tclは、bitcoin_fpga/ のプロジェクトのBlcok DesignをVivadoで開いた状態で、メニューより File -> Export -> Export Block Designを選択して生成したファイルをリネームしたものです。
+
+## bitcoin_fpga で実際にマイニングを行う方法
+
+PYNQ-Z1のPLを jupyter_notebooks/miner.py を用いてbitcoin_minerにコンフィグレーションした状態にて、次のレポジトリにある bitcoin_minerを利用するように改造した cpuminer-multi をビルドしたものを実行します。
+
+https://github.com/BOSUKE/cpuminer-multi
+
+bitcoin_miner向けに改造したcpuminer-multiの実行の仕方などは上記レポジトリのREADME.mdを参照してください。
